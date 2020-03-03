@@ -1,14 +1,96 @@
-<!-- main app container -->
-<div class="container">
-  <router-outlet></router-outlet>
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+
+<div *ngIf="page=='home'">
+  <div class="home-div"><button class="home-button" (click)='addDirectory()'>Add a directory</button></div>
+  <div class="home-div"><button class="home-button" (click)='searchKeyword()'>Search for Files</button></div>
 </div>
 
-<!-- credits -->
-<!-- <div class="text-center mt-4">
-  <p>
-      <a href="https://jasonwatmore.com/post/2019/06/22/angular-8-jwt-authentication-example-tutorial" target="_top">Angular 8 - JWT Authentication Example & Tutorial</a>
-  </p>
-  <p>
-      <a href="http://jasonwatmore.com" target="_top">JasonWatmore.com</a>
-  </p>
-</div> -->
+<div *ngIf="page=='search'">
+  <div class="center">
+      <h1>Search for a keyword to search the files</h1>
+      <input type="text" #search (keyup.enter)="sendMsg(search.value)">
+      <button (click)="goTo('home')">Go Back</button>
+  </div>
+  <div class="center" *ngIf="!resultFound && results">
+      <div class="lds-circle"><div></div></div>
+  </div>
+  <h2 *ngIf="resultFound" class="search-h2">Results:</h2>
+  <h2 *ngIf='noResultFound' class="search-error">No Results Found, Please try some other keyword</h2>
+  <div *ngFor="let item of results" class="w3-container" >
+          <span (click)="getFileInfo(item.id)" class="search-div">
+              <ul class="w3-ul w3-card-4 w3-white">
+              <li class="w3-padding-16">
+                  <span class="w3-medium">Name: {{item.name}}{{item.type}}</span><br>
+              </li>
+              <li class="w3-padding-16">
+                  <span class="w3-small">Text: {{item.text}}</span><br>
+              </li>
+              <li class="w3-padding-16" >
+                  <span class="w3-small" >Tags: {{item.tags}}</span><br>
+              </li>
+              <li class="w3-padding-16">
+                  <span class="w3-small">Path: {{item.path}}</span><br>
+              </li>
+              </ul>
+          </span>
+  </div>
+</div>
+
+<div *ngIf="page=='tag'">
+  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+  <div class="tag-center">
+      <div class="lds-circle" *ngIf="!fileInfo"><div></div></div>
+
+      <div *ngIf="fileInfo" class="center">
+          <h3 class="tag-h3"> {{this.fileInfo.name}}{{this.fileInfo.type}} </h3>
+          <p class="tag-text"> Text: {{this.fileInfo.text}} </p>
+          <p > Path: {{this.fileInfo.path}} </p>
+          <p > Tags: {{this.fileInfo.tags}} </p>
+
+
+          <div class="dropdown" >
+              <p>
+                  Add Tags: 
+                  <input type="text" #tag (keyup.enter)="addTag(tag.value, this.fileInfo)">
+                  <button (click)="addTag(tag.value, this.fileInfo)">Submit</button>
+                  <button (click)="goTo('search')">Go Back</button>
+              </p>
+          </div>
+      </div>
+  </div>
+</div>
+
+<div *ngIf="page=='add'">
+  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+  <div class="center">
+      <h1>Enter the path of the directory where the files are saved</h1>
+      <h6>For eg: C:\Users\Default\Documents</h6>
+  </div>
+  <div class="center">
+      <input type="text" #train (keyup.enter)="trainPath(train.value)">
+      <button (click)="trainPath(train.value)">Submit</button>
+      <button (click)="goTo('home')">Go Back</button>
+  </div>
+  <div class="center" *ngIf="loading">
+      <div class="lds-circle"><div></div></div>
+  </div>
+  <div class="center" *ngIf="done">
+      <p>Done</p>
+  </div>
+
+  <div class="center">
+      <h1>Enter the path of the .db file where the data is stored</h1>
+      <h6>For eg: C:\Users\Default\Documents\database.db</h6>
+  </div>
+  <div class="center">
+      <input type="text" #train (keyup.enter)="trainPathDB(train.value)">
+      <button (click)="trainPathDB(train.value)">Submit</button>
+      <button (click)="goTo('home')">Go Back</button>
+  </div>
+  <div class="center" *ngIf="loadingDB">
+      <div class="lds-circle"><div></div></div>
+  </div>
+  <div class="center" *ngIf="doneDB">
+      <p class="add-p">Done</p>
+  </div>
+</div>

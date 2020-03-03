@@ -1,20 +1,8 @@
 .center {
-    /* padding-top: 5%; */
-    /* margin-top: 300px; */
     width: fit-content;
-    height: 100px;
+    height: fit-content;
     margin: 0 auto;
-    /* align-items: center; */
 }
-
-/* h6 {
-    margin: 0 auto;
-} */
-
-/* .center :hover{
-    background-color: rgb(71, 146, 245);
-    cursor: pointer;
-} */
 
 
 input[type=text], select {

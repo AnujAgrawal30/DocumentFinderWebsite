@@ -8,20 +8,9 @@ h2 {
     padding-left: 50px;
 }
 
-
-input[type='radio']:checked + label .swanky_wrapper__content{
-    display: block;
-    top: 68px;
-    border-bottom: 1px solid rgb(33, 46, 65);
-}
-
 .center {
-  /* padding-top: 5%; */
-  /* margin-top: 300px; */
   width: fit-content;
-  /* height: 100px; */
   margin: 0 auto;
-  /* align-items: center; */
 }
 
 .error {

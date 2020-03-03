@@ -9,9 +9,9 @@ import { TagComponent } from './tag/tag.component';
 
 const routes: Routes = [
   { path: "", component: HomeComponent},
-  { path: "search", component: SearchComponent},
-  { path: "add", component: AddComponent},
-  { path: "file/:id", component: TagComponent},
+  // { path: "search", component: SearchComponent},
+  // { path: "add", component: AddComponent},
+  // { path: "file/:id", component: TagComponent},
 ];
 
 @NgModule({
