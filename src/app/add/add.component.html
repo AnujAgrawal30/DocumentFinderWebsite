@@ -1,0 +1,32 @@
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<div class="center">
+    <h1>Enter the path of the directory where the files are saved</h1>
+    <h6>For eg: C:\Users\Default\Documents</h6>
+</div>
+<div class="center">
+    <input type="text" #train (keyup.enter)="trainPath(train.value)">
+    <button (click)="trainPath(train.value)">Submit</button>
+    <button (click)="goBack()">Go Back</button>
+</div>
+<div class="center" *ngIf="loading">
+    <div class="lds-circle"><div></div></div>
+</div>
+<div class="center" *ngIf="done">
+    <p>Done</p>
+</div>
+
+<div class="center">
+    <h1>Enter the path of the .db file where the data is stored</h1>
+    <h6>For eg: C:\Users\Default\Documents\database.db</h6>
+</div>
+<div class="center">
+    <input type="text" #train (keyup.enter)="trainPathDB(train.value)">
+    <button (click)="trainPathDB(train.value)">Submit</button>
+    <button (click)="goBack()">Go Back</button>
+</div>
+<div class="center" *ngIf="loadingDB">
+    <div class="lds-circle"><div></div></div>
+</div>
+<div class="center" *ngIf="doneDB">
+    <p>Done</p>
+</div>

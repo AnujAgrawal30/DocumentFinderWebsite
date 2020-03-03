@@ -1,0 +1,21 @@
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<div class="center">
+    <div class="lds-circle" *ngIf="!fileInfo"><div></div></div>
+
+    <div *ngIf="fileInfo" class="center">
+        <h3> {{this.fileInfo.name}}{{this.fileInfo.type}} </h3>
+        <p class="text"> Text: {{this.fileInfo.text}} </p>
+        <p > Path: {{this.fileInfo.path}} </p>
+        <p > Tags: {{this.fileInfo.tags}} </p>
+
+
+        <div class="dropdown" >
+            <p>
+                Add Tags: 
+                <input type="text" #tag (keyup.enter)="addTag(tag.value, this.fileInfo)">
+                <button (click)="addTag(tag.value, this.fileInfo)">Submit</button>
+                <button (click)="goBack()">Go Back</button>
+            </p>
+        </div>
+    </div>
+</div>

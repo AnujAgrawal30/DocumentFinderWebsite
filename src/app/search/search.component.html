@@ -1,0 +1,26 @@
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<div class="center">
+    <h1>Search for a keyword to search the files</h1>
+    <input type="text" #search (keyup.enter)="sendMsg(search.value)">
+    <button (click)="goBack()">Go Back</button>
+</div>
+<h2 *ngIf="results">Results:</h2>
+<h2 *ngIf='noResultFound' class="error">No Results Found, Please try some other keyword</h2>
+<div *ngFor="let item of results" class="w3-container" >
+        <span (click)="goTo(item.id)">
+            <ul class="w3-ul w3-card-4 w3-white">
+            <li class="w3-padding-16">
+                <span class="w3-medium">Name: {{item.name}}{{item.type}}</span><br>
+            </li>
+            <li class="w3-padding-16">
+                <span class="w3-small">Text: {{item.text}}</span><br>
+            </li>
+            <li class="w3-padding-16" >
+                <span class="w3-small" >Tags: {{item.tags}}</span><br>
+            </li>
+            <li class="w3-padding-16">
+                <span class="w3-small">Path: {{item.path}}</span><br>
+            </li>
+            </ul>
+        </span>
+</div>
